@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meal Recommender</title>
+    <link rel="icon" href="/static/medical-team.png" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <style>
+body{
+   /* background-color: rgba(168, 211, 255, 0.282);   */
+   /* background-image: url(sketches-arabic-food-pattern.png); */
+   font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.bg-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/static/sketches-arabic-food-pattern.png");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1; 
+    z-index: -1; 
+}
+header {
+    background-color: rgba(89, 178, 237, 0.6);
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    gap: 10px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-content img {
+    height: 40px; /* حجم الآيكونات */
+}
+
+h1 {
+    margin: 0;
+    font-size: 22px; /* تصغير العنوان */
+}
+.a{
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none !important;
+    color: forestgreen;
+    margin: 0 10px;
+    font-weight: 500;
+    font-size: 16px;
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+    text-decoration-line: none;
+    
+}
+.a:hover{
+    margin-top: 10px;
+    text-align: center;
+    text-decoration: none !important;
+    color: rgb(143, 6, 6);
+    margin: 0 10px;
+    font-weight: 500;
+    font-size: 16px;
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+}
+
+image{
+    height: 60px;
+}
+h1{
+    margin: 0;
+    font-size: 30px;
+}
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #c9f36da2;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 8px rgba(2, 79, 46, 0.856);
+}
+.cartoon-boy {
+    text-align: center;
+    margin: 50px auto;
+}
+
+.cartoon-boy img {
+    width: 150px;
+   height:auto;
+}
+form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: 0 0 10px rgba(3, 169, 78, 0.548);
+    width: 50%;
+    margin:0 auto 30px;
+}
+.icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-right:10px;
+}
+label{
+    display: block;
+    margin: 10px 0 5px;
+    
+}
+input{
+    width: 40%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.829);
+    border-radius: 4px;
+}
+button{
+    padding: 10px 20px;
+    background-color: rgba(10, 137, 59, 0.855);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+button:hover{
+    padding: 10px 20px;
+    background-color: rgba(137, 10, 10, 0.855);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.results {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    margin: 20px auto;
+    width: 50%;
+    box-shadow: 0 0 10px rgba(10, 86, 10, 0.56);
+    font-size: 18px;
+}
+
+.results ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.results li {
+    margin-bottom:8px;
+}
+footer{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(192, 4, 4);
+}
+</style>
+</head>
+<body>
+    <div class="bg-image"></div>
+
+    <header>
+        <div class="header-content">
+            <img src="{{ url_for('static', filename='woman.png') }}" alt="Icon" class="icon">
+            <img src="{{ url_for('static', filename='user.png') }}" alt="Icon" class="icon">
+            <h1>Meal Mind</h1>
+            <div class="a"></div>
+                <a href="https://www.kaggle.com/">source</a>
+                <a href="https://www.linkedin.com/in/leen-eyad-1ab7252a8?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app ">more</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h2>
+            <img src="{{ url_for('static', filename='person.png') }}" alt="Icon" class="icon">
+            About Us?
+        </h2>
+        <p>
+            This smart system recommends healthy breakfast options for children based on their age, BMI, and insulin level.
+            It predicts glucose impact using machine learning to suggest the top 3 meals with the lowest sugar effect.
+        </p>
+    </main>
+
+    <div class="cartoon-boy">
+        <img src="{{ url_for('static', filename='cartoonboy.png') }}" alt="Cartoon Boy">
+        <img src="{{ url_for('static', filename='first-aid-kit_7769714.png') }}" alt="medical kit" >
+    </div>
+
+    <h2>Enter Child's Data</h2>
+    <form action="/predict" method="post">
+        <img src="{{ url_for('static', filename='age-range.png') }}" alt="Icon" class="icon">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br><br>
+
+        <img src="{{ url_for('static', filename='bmi.png') }}" alt="Icon" class="icon">
+        <label for="bmi">BMI:</label>
+        <input type="number" id="bmi" name="bmi" step="0.1" required><br><br>
+
+        <img src="{{ url_for('static', filename='insuline.png') }}" alt="Icon" class="icon">
+        <label for="insulin">Insulin:</label>
+        <input type="number" id="insulin" name="insulin" step="0.1" required><br><br>
+
+        <button type="submit">Get Recommendations</button>
+        <br>
+    </form>
+
+    {% if results %}
+    <div class="results">
+        <h3>Top 3 Recommended Meals</h3>
+        <ul>
+            {% for meal in results %}
+                <li>{{ meal }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <footer>
+        <p>&copy; Leen Eyad Abu Saloum</p>
+    </footer>
+</body>
+</html>
