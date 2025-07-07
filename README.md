@@ -16,8 +16,7 @@ The system predicts the glucose impact of meals using a trained machine learning
 - Custom illustrations and clean CSS styling
 - Hosted live on *Render*
 
-## Live Demo  
-[*Click here to try it!*](https://meal-mind.onrender.com)
+
 
 ## Tech Stack
 
